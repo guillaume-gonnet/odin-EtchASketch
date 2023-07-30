@@ -6,6 +6,6 @@
 .square {
     border: 1px solid black;
     flex: 1 0 6%;
-    margin: 1px;
-    height: 100px;
+    margin: 0px;
+    aspect-ratio: 1 / 1;
 }
