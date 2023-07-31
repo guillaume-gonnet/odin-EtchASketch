@@ -10,3 +10,11 @@
     aspect-ratio: 1 / 1;
     box-sizing: border-box;
 }
+
+.hovered {
+    background-color: black;
+}
+
+#btnSquaresQty {
+    margin: 5px;
+}
