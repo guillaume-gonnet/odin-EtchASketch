@@ -11,7 +11,7 @@ function createSquares(nbSquares) {
         const flexBasisPercent = (100 / Math.sqrt(nbSquares));
         const flexBasisStr = '' + flexBasisPercent + '%';
         div.style.flexBasis = flexBasisStr;
-        div.addEventListener('mouseover', () => div.classList.toggle('hovered'));
+        div.addEventListener('mouseover', () => div.style.backgroundColor = generateRandomRGB());
         container.appendChild(div);
     }
 }
@@ -26,8 +26,16 @@ function promptSquares() {
     createSquares(nbSquares * nbSquares);
 }
 
+
 function removeAllChildren(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
+}
+
+function generateRandomRGB() {
+    const r = Math.floor(Math.random() * 256).toString();
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
 }
