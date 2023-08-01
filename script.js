@@ -11,7 +11,15 @@ function createSquares(nbSquares) {
         const flexBasisPercent = (100 / Math.sqrt(nbSquares));
         const flexBasisStr = '' + flexBasisPercent + '%';
         div.style.flexBasis = flexBasisStr;
-        div.addEventListener('mouseover', () => div.style.backgroundColor = generateRandomRGB());
+        div.addEventListener('mouseover', () => {
+            if (div.style.backgroundColor === '') {
+                div.style.backgroundColor = generateRandomRGBA();
+            } else {
+                const color = div.style.backgroundColor;
+
+                div.style.backgroundColor = darkenRGBA(color);;
+            }
+        });
         container.appendChild(div);
     }
 }
@@ -33,9 +41,19 @@ function removeAllChildren(parent) {
     }
 }
 
-function generateRandomRGB() {
+function generateRandomRGBA() {
     const r = Math.floor(Math.random() * 256).toString();
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
-    return `rgb(${r}, ${g}, ${b})`;
+    const a = 0.1;
+    return `rgba(${r}, ${g}, ${b}, ${a})`;
+}
+
+function darkenRGBA(RGBA) {
+    const RGBAsplit = RGBA.split(",");
+    if (RGBAsplit[3] === undefined) {
+        return RGBA;
+    }
+    const a = 0.1 + parseFloat(RGBAsplit[3].slice(0, -1));
+    return `${RGBAsplit[0]}, ${RGBAsplit[1]}, ${RGBAsplit[2]}, ${a})`
 }
